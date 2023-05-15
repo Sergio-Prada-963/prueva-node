@@ -7,9 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-<h1>
+    <h1>
         <?php echo "hola nundo php"; ?>
     </h1>
+    <h3>
+        hola mundo normal
+    </h3>
     
 </body>
 </html>
