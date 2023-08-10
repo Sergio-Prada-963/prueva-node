@@ -1,0 +1,53 @@
+/* https://api.postman.com/collections/29047780-9b032e55-a8ae-4335-8e8d-6a3a7c24f809?access_key=PMAT-01H7GD46F3YZCH6QBMFPJDRZK7 */
+{
+
+
+	"info": {
+		"_postman_id": "9b032e55-a8ae-4335-8e8d-6a3a7c24f809",
+		"name": "Prueva node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29047780"
+	},
+	"item": [
+		{
+			"name": "campers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "centros",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "levels",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "rutas",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
