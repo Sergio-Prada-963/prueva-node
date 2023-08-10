@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { check } from "express-validator";
 
-import {existEmail, idexiste, existNombre} from "../helpers/db.validators.js"
+import {existEmail, idExiste, existNombre} from "../helpers/db.validators.js"
 import validJWT from "../middlewares/validateJWT.js"
 import validateDoc from "../middlewares/validateDoc.js";
 import role from "../middlewares/validateRole.js";
@@ -20,15 +20,14 @@ router.post('/',[
     check('password','Password mínimo de 8 caracteres').isLength(8),
     check('email','EL email no es valido').isEmail(),
     check('email').custom(existEmail),
-    //check('email','Email Invalido').isEmail().custom(existEmail),
 validateDoc],postCamper)
 
 router.delete('/:id',[
     validJWT,
     role,
-    check('id','NO es un id valido').isMongoId(),
-    check('id').custom(idexiste),
-],deleteCamper)
+    check('id','no es un Id valido').isMongoId(),
+    check('id').custom(idExiste),
+validateDoc],deleteCamper)
 
 router.patch('/:id',updateCamper)
 

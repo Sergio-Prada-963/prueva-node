@@ -6,8 +6,8 @@ const existEmail = async (email='')=>{
         throw new Error(`No se aceptan emails duplicados`)
 }
 
-const idexiste = async(id)=>{
-    const existe = await Camper.findById(id)
+const idExiste = async(id='')=>{
+    const existe = await Camper.findById(id);
     if(!existe)
         throw new Error(`El id ${id} no existe en la base de datos`)
 }
@@ -18,7 +18,7 @@ const existNombre = async (nombre='')=>{
         throw new Error(`El nombre ${nombre} ya esta registrado`)
 }
 
-export {existEmail, idexiste, existNombre}
+export {existEmail, idExiste, existNombre}
 
 const existEmailLogin = async (email='')=>{
     const exist = await Camper.find({email})

@@ -1,8 +1,14 @@
-const role = (req,res,next)=>{
+import Rol from "../models/Rol.js";
+const role = async (req,res,next)=>{
     if(!req.usuario)
         return res.status(400).json({message:"Se quiere validar el rango sin el token"});
-    if(req.usuario.rango !== "gerenteRol")
-        return res.status(550).json({message:`${req.usuario.nombre} No es trainer - no tiene permiso`});
+        
+    const gerente = await Rol.findOne({rol:"gerenteRol"});
+
+    if((JSON.stringify(req.usuario.rol)) !== (JSON.stringify(gerente._id))){
+        return res.status(550).json({message:`${req.usuario.nombre} No es Gerente - no tiene permiso`});
+    }
+    
     next()
 }
 export default role
