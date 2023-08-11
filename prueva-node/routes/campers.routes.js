@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { check } from "express-validator";
+import { param } from "express-validator";
 
 import {existEmail, idExiste, existNombre} from "../helpers/db.validators.js"
 import validJWT from "../middlewares/validateJWT.js"
 import validateDoc from "../middlewares/validateDoc.js";
-import role from "../middlewares/validateRole.js";
+import {role, gerenteTrainer} from "../middlewares/validateRole.js";
 import {getAllCamper, postCamper, deleteCamper, updateCamper} from "../controllers/controllers.campers.js"
+import Camper from "../models/Camper.js";
 
 const router = Router();
 
@@ -25,10 +27,15 @@ validateDoc],postCamper)
 router.delete('/:id',[
     validJWT,
     role,
-    check('id','no es un Id valido').isMongoId(),
-    check('id').custom(idExiste),
+    param('id','no es un Id valido').isMongoId(),
+    param('id').custom(idExiste),
 validateDoc],deleteCamper)
 
-router.patch('/:id',updateCamper)
+router.patch('/:id',[
+    validJWT,
+    gerenteTrainer,
+    check('id').custom(idExiste),
+    param('id','no e sun mongo id').isMongoId(),
+    validateDoc],updateCamper);
 
 export default router;
