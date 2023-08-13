@@ -9,7 +9,7 @@ const getAllCamper = async (req,res)=>{
     const [total,campers] = await Promise.all([
         Camper.countDocuments(query),
         Camper.find(query)
-        .populate('level','-_id')
+        .populate({path: 'level',populate:{path:'ruta'}})
         .populate('rol','-_id')
         .skip(Number(desde)).limit(Number(hasta))
     ]);
@@ -47,7 +47,7 @@ const deleteCamper = async (req,res)=>{
  
 const updateCamper = async (req,res)=>{
     const {id} = req.params
-    const {password, rol, level, ...resto} = req.body
+    const {password, rol, level, levelState, ...resto} = req.body
 
     const existRol = await Rol.findOne({rol})
     const existLevel = await Level.findOne({nombre:level});
@@ -58,8 +58,11 @@ const updateCamper = async (req,res)=>{
     if(rol && !existRol)
         return res.json({message:`El rol ${rol} no existe`})
     
-    if(level)
-        resto.level = existLevel._id;
+    if(level){
+        if(levelState == "Finalizado"){
+            resto.level = existLevel._id;
+        }else {return res.json({message:`El camper no puede subir de level`})}
+    }
 
     if(rol)
         resto.rol = existRol._id

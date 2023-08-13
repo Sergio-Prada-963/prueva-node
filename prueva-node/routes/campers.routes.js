@@ -7,7 +7,6 @@ import validJWT from "../middlewares/validateJWT.js"
 import validateDoc from "../middlewares/validateDoc.js";
 import {role, gerenteTrainer} from "../middlewares/validateRole.js";
 import {getAllCamper, postCamper, deleteCamper, updateCamper} from "../controllers/controllers.campers.js"
-import Camper from "../models/Camper.js";
 
 const router = Router();
 
@@ -35,7 +34,10 @@ router.patch('/:id',[
     validJWT,
     gerenteTrainer,
     check('id').custom(idExiste),
-    param('id','no e sun mongo id').isMongoId(),
+    param('id','no es un mongo id').isMongoId(),
+    check('típoIdentificacion','Solo se permiten tipo de identificación T.I y C.C').isIn(['T.I','C.C']),
+    check('NroIdentificacion','nro de identificación debe tener exactamente 10 caracteres.').isLength(10),
+    //check('levelState').custom(levelStateValid),
     validateDoc],updateCamper);
 
 export default router;

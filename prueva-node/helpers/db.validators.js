@@ -18,12 +18,15 @@ const existNombre = async (nombre='')=>{
         throw new Error(`El nombre ${nombre} ya esta registrado`)
 }
 
-export {existEmail, idExiste, existNombre}
-
 const existEmailLogin = async (email='')=>{
     const exist = await Camper.find({email})
     if(!exist)
         throw new Error(`Email no registrado`)
 }
 
-export {existEmailLogin}
+// const levelStateValid = async (levelState='')=>{
+//     if(levelState !== "Finalizado")
+//         throw new Error(`El camper no puede subir de nivel`)
+// }
+export {existEmail, idExiste, existNombre, existEmailLogin}
+
