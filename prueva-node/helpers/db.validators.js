@@ -1,4 +1,5 @@
 import Camper from "../models/Camper.js";
+import Level from "../models/Level.js";
 
 const existEmail = async (email='')=>{
     const exist = await Camper.findOne({email})
@@ -30,3 +31,10 @@ const existEmailLogin = async (email='')=>{
 // }
 export {existEmail, idExiste, existNombre, existEmailLogin}
 
+const existLevel = async (id)=>{
+    const existe = await Level.findById(id);
+    if(!existe)
+        throw new Error(`El id ${id} no existe en la base de datos`)
+}
+
+export {existLevel}
